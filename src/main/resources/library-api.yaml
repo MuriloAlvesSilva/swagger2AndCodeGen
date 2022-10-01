@@ -1,0 +1,92 @@
+openapi: 3.0.0
+
+info:
+  version: 0.0.1
+  title: Library Service
+  description: |
+    This is a description
+servers:
+  - url: https://localhost:8080/
+    description: This is where my api is
+
+tags:
+
+  - name: "Books"
+  - name: "Users"
+  - name: "Energia"
+
+
+paths:
+
+  /books:
+
+    get:
+      summary: This gets all books
+      description: This is a detailed description
+      tags:
+        - "Books"
+      operationId: getAllBooksInLibrary
+      responses:
+        "200":
+          description: This means its okay
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+        "400":
+          description: BAD REQUEST
+        "401":
+          description: UNAUTH
+
+  /contas:
+
+    get:
+      summary: Obter todas contas
+      description: Obtem detalhes da conta de energia
+      tags:
+        - "Energia"
+      operationId: getAllAccountEnergy
+      responses:
+        "200":
+          description: This means its okay
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+        "400":
+          description: BAD REQUEST
+        "401":
+          description: UNAUTH
+
+components:
+  schemas:
+
+    Book:
+      description: This is the book object
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          description: The name of book
+          type: string
+        author:
+          description: The author
+          type: string
+
+    Account:
+      description: This is the account object
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          description: The name of account
+          type: string
+        author:
+          description: The author
+          type: string
